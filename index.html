@@ -72,8 +72,8 @@
         <div class="row me-row content-ct speaker" id="speakers">
           <h2 class="row-title">Check them out!</h2>
           <div class="col-md-4 col-sm-6 feature">
-            <img src="img/speaker-1.png" class="speaker-img">
-            <h3>Simon Collins</h3>
+            <div id="pic1"></div>
+            <h3 id="1"></h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <ul class="speaker-social">
               <li><a href="#"><span class="ti-facebook"></span></a></li>
@@ -327,7 +327,7 @@
               <div class="form-group">
                 <label for="name" class="col-sm-3 control-label">Name<sup>*</sup></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="name" placeholder="John Doe" required>
+                  <input type="text" class="form-control" id="name" placeholder="Penpal" required>
                   <div class="help-block with-errors pull-right"></div>
                   <span class="form-control-feedback" aria-hidden="true"></span>
                 </div>
@@ -335,7 +335,7 @@
               <div class="form-group">
                 <label for="email" class="col-sm-3 control-label">Email<sup>*</sup></label>
                 <div class="col-sm-9">
-                  <input type="email" class="form-control" id="email" placeholder="you@youremail.com" required>
+                  <input type="email" class="form-control" id="email" placeholder="Penpal email" required>
                   <div class="help-block with-errors pull-right"></div>
                   <span class="form-control-feedback" aria-hidden="true"></span>
                 </div>
@@ -366,7 +366,7 @@
         </div>
         <div class="row footer-credit">
           <div class="col-md-6 col-sm-6">
-            <p>&copy; 2015, <a href="http://www.designerdada.com">DesignerDada.com</a> | All rights reserved.</p>
+            <p>&copy; 2017, Bernardo and Tahmidur | All rights reserved.</p>
           </div>
           <div class="col-md-6 col-sm-6"> 
             <ul class="footer-menu">
@@ -395,6 +395,22 @@
 
       ga('create', 'UA-29231762-2', 'auto');
       ga('send', 'pageview');
+
+    function setup(){
+      $.ajax({
+          url: 'https://randomuser.me/api/?results=6'
+      }).done(function(data){
+          dataFunction(data);
+      });
+    }
+      $(document).ready(setup);
+
+    var dataFunction = function(data){
+        var fullname = data.results[0].name.first + " " + data.results[0].name.last;
+        var nat = data.results[0].nat;
+        $("#1").append(fullname);
+        $("#pic1").append('<img src="'+ data.results[0].picture.small +'" class="speaker-img">');
+    }
       </script>
     </body>
     </html>
